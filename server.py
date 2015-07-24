@@ -3,21 +3,7 @@ from flask import Flask, render_template, redirect, request, flash, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
 import json
-import os
-import psycopg2
-import urlparse
-import dj_database_url
-
-urlparse.uses_netloc.append("postgres")
-url = urlparse.urlparse(os.environo["DATABASE_URL"])
-conn = psycopg2.connect(
-	database=url.path[1:],
-	user=url.username,
-	password=url.password,
-	host=url.hostname,
-	port=url.port
-	)
-DATABASES['default'] = dj_database_url.config()
+import os 
 
 app = Flask(__name__)
 
