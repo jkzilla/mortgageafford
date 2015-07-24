@@ -1,1 +1,1 @@
-web: python mortgageafford/server.py
+web: python server.py
