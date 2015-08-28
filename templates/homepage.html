@@ -7,31 +7,35 @@
 
 <p>Simple steps + made easy. Enter your information below.</p>
 
-<form action="/get_rates" method="GET">
-	<label>Current annual Income in dollars (Required if no monthly payment. Enter integer amounts only, such as 50000).</label><br>
-	<input type="text" name="annualincome"><br>
+<form name="myForm" action="/get_rates" method="GET">
+	<label>Current annual Income in dollars (Required if no monthly payment. Enter an integer amount).</label><br>
+	<input type="text"value="ex: $50,000" name="annualincome"><br>
 
-	<label>Monthly Payment (Required if no annual income. Enter integer amounts only, such as 2000).</label><br>
-	<input type="text" name="monthlypayment"><br>
+	<label>Monthly Payment (Required if no annual income. Enter an integer amount).</label><br>
+	<input type="text" value="ex: $2,000" name="monthlypayment"><br>
 
-	<label>Down Payment in dollars (enter integer amounts only, such as 100000).*</label><br>
-	<input type="text" name="down"><br>
+	<label>Down Payment in dollars (Enter an integer amount).*</label><br>
+	<input type="text" value="ex: $100,000" name="down"><br>
 
-	<label>Debt, paid monthly, in dollars (enter integer amounts only, such as 5000).</label><br>
-	<input type="text" name="monthlydebts"><br>
+	<label>Debt, paid monthly, in dollars (Enter an integer amount).</label><br>
+	<input type="text" value="ex: $5.000" name="monthlydebts"><br>
 
-	<label>Annual interest rate for the loan (Example values 1-99. 
-	Default is the current 30 year fixed rate from Zillow Mortgage Marketplace).</label><br>
-	<input type="text" name="rate"><br>
+	<label>Annual interest rate for the loan (Leave empty to use the current 30 year fixed rate from Zillow Mortgage Marketplace).</label><br>
+	<input type="text" value="ex: 1-99" name="rate"><br>
 
-	<label>Periodic payment schedule (yearly, monthly, both, or none).</label><br>
-	<input type="text" name="schedule"><br>
+	<select name="schedule">
+		<option value="yearly">Yearly</option>
+		<option value="monthly">Monthly</option>
+		<option value="both">Both</option>
+		<option value="none">None</option>
+	</select>
 
 	<label>The term of the loan in months. If you leave this blank, we assume a 360 month term.</label><br>
-	<input type="text" name="term"><br>
+	<input type="text" value="Default: 360" name="term"><br>
 
 	<label>Enter your max allowed debt to income ratio. If you leave this blank, we assume a 36% default.</label><br>
-	<input type="text" name="debttoincome"><br>
+	<input type="text" value="Default: 35" name="debttoincome"><br>
+	<label>%</label><br>
 
 	<label>Enter your income tax rate of the borrow as a percentage. If you leave this blank, we assume a 30% default.</label><br>
 	<input type="text" name="incometax"><br>
@@ -43,12 +47,34 @@
 	<input type="text" name="propertytax"><br>
 
 	<label>Your annual hazard insurance in dollars (enter integer amounts only, such as 5000).</label><br>
-	<input type="text" name="schedule"><br>
+	<input type="text" name="hazardinsurance"><br>
 
-	<label>Your monthly Private Mortgag in dollars (enter integer amounts only, such as 5000).</label><br>
-	<input type="text" name="schedule"><br>
+	<label>Your monthly Private Mortgage in dollars (enter integer amounts only, such as 5000).</label><br>
+	<input type="text" name="privatemortgage"><br>
 
 
 	<input type="submit" name="getratesummary" value="Get your rate summary">
 </form>
+
+<script type="text/javascript">
+	function validateForm() {
+		var annualincome = document.forms["myForm"]["getratesummary"].value;
+		if (annualincome, monthlypayment, down, monthlydebts, rate % 1 === 0){
+			alert("Please enter an integer value.")
+		}
+		else {
+			// submit form
+		}
+	}	if rate == "" {
+		//submit for default value
+	}	if annualincome == "" {
+		//monthlypayment must have value
+		alert("Please enter a monthly payment value below.")
+	}
+		if monthlypayment == "" {
+			//annualincome must have value
+		alert("Please enter an annual income value above.")
+		}
+		if 
+</script>
 {% endblock %}
