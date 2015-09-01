@@ -21,58 +21,49 @@ def homepage():
 def get_rates():
  	
  	rate_params = {}
+
  	print rate_params
+
 	annualincome = request.args.get('annualincome', '')
 	print annualincome
-	# request.form['annualincome']
+
 	rate_params['annualincome'] = int(annualincome)
 	print rate_params
+
 	monthlypayment = request.args.get('monthlypayment', '')
-	# request.form['monthlypayment']
 	rate_params['monthlypayment'] = int(monthlypayment)
 
 	down = request.args.get('down', '')
-	# request.form['down']
 	rate_params['down'] = int(down)
 
 	monthlydebts = request.args.get('monthlydebts', '')
-	# request.form['monthlydebts']
 	rate_params['monthlydebts'] = int(monthlydebts)
 
 	rate = request.args.get('rate', '')
-	# request.form['rate']
 	rate_params['rate'] = int(rate)
 
 	schedule = request.args.get('schedule', '')
-	# request.form['schedule']
 	rate_params['schedule'] = str(schedule)
 
 	term = request.args.get('term', '')
-	# request.form['term']
 	rate_params['term'] = int(term)
 
 	debttoincome = request.args.get('debttoincome', '')
-	# request.form['debttoincome']
 	rate_params['debttoincome'] = int(debttoincome)
 
 	incometax = request.args.get('incometax', '')
-	# request.form['incometax']
 	rate_params['incometax'] = int(incometax)
 
 	propertytax = request.args.get('propertytax', '')
-	# request.form['propertytax']
 	rate_params['propertytax'] = int(propertytax)
 
 	hazardinsurance = request.args.get('hazardinsurance', '')
-	# request.form['hazard']
 	rate_params['hazard'] = int(hazardinsurance)
 
 	pmi = request.args.get('pmi', '')
-	# request.form['pmi']
 	rate_params['pmi'] = int(pmi)
 
  	zipc = request.args.get('zipc', '')
- 	# request.form['zipcode']
 	rate_params['zipc'] = int(zipc)
 
  	estimate = request.args.get('estimate', '')
