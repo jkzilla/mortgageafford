@@ -66,11 +66,11 @@ def get_rates():
  	zipc = request.args.get('zipc', '')
 	rate_params['zipc'] = int(zipc)
 
- 	true = request.args.get('True', '')
- 	false = request.args.get('False', '')
-	# if true === 'True':
+ 	estimate_yes = request.args.get('True', '')
+ 	estimate_no = request.args.get('False', '')
+	# if estimate_yes === 'True':
 		# rate_params['estimate'] = True
-	# if false === 'False':
+	# if estimate_no === 'False':
 		# rate_params['estimate'] = False
 
  	zwsid = 'X1-ZWz1eunt26vguj_6msnx'
