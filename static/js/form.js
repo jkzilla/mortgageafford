@@ -3,7 +3,7 @@
 	
 	function validateForm() {
 		var annualincome = document.forms["myForm"]["annualincome"].value;
-		console.log(annualincome)
+		console.log(annualincome);
 		var monthlypayment = document.forms["myForm"]["monthlypayment"].value;
 		var down = document.forms["myForm"]["down"].value;
 		var monthlydebts = document.forms["myForm"]["monthlydebts"].value;
@@ -12,8 +12,10 @@
 		var term = document.forms["myForm"]["term"].value;		
 		var debttoincome = document.forms["myForm"]["debttoincome"].value;
 		var incometax = document.forms["myForm"]["incometax"].value;
-		var estimateyes = document.forms["myForm"]["estimateyes"].value;
-		var estimateno = document.forms["myForm"]["estimateno"].value;
+		var estimateyes = document.forms["myForm"]["estimate_yes"].value;
+		console.log(estimateyes)
+		var estimateno = document.forms["myForm"]["estimate_no"].value;
+		console.log(estimateno)
 		var propertytax = document.forms["myForm"]["propertytax"].value;
 		var hazardinsurance = document.forms["myForm"]["hazardinsurance"].value;
 		var privatemortgage = document.forms["myForm"]["privatemortgage"].value;
