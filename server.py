@@ -68,10 +68,10 @@ def get_rates():
 
  	estimate_yes = request.args.get('True', '')
  	estimate_no = request.args.get('False', '')
-	# if estimate_yes === 'True':
-		# rate_params['estimate'] = True
-	# if estimate_no === 'False':
-		# rate_params['estimate'] = False
+	if estimate_yes is None:
+		rate_params['estimate'] = False
+	if estimate_no is None:
+		rate_params['estimate'] = True
 
  	zwsid = 'X1-ZWz1eunt26vguj_6msnx'
 	rate_params['zws-id'] = str(zwsid)

@@ -3,6 +3,7 @@
 	
 	function validateForm() {
 		var annualincome = document.forms["myForm"]["annualincome"].value;
+		console.log(annualincome)
 		var monthlypayment = document.forms["myForm"]["monthlypayment"].value;
 		var down = document.forms["myForm"]["down"].value;
 		var monthlydebts = document.forms["myForm"]["monthlydebts"].value;
