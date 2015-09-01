@@ -4,11 +4,13 @@ from flask_debugtoolbar import DebugToolbarExtension
 import requests
 import json
 import os 
+from wtforms import Form, BooleanField, StringField, validators
 
 app = Flask(__name__)
 
-app.secret_key = "ASECRET"
 
+app.config['SECRET_KEY'] = "ASECRET"
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
 app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
@@ -19,69 +21,84 @@ def homepage():
 def get_rates():
  	
  	rate_params = {}
+ 	print rate_params
+	annualincome = request.args.get('annualincome', '')
+	print annualincome
+	# request.form['annualincome']
+	rate_params['annualincome'] = int(annualincome)
+	print rate_params
+	monthlypayment = request.args.get('monthlypayment', '')
+	# request.form['monthlypayment']
+	rate_params['monthlypayment'] = int(monthlypayment)
 
-	annualincome = request.form['annualincome']
-	rate_params['annualincome'] = annualincome
+	down = request.args.get('down', '')
+	# request.form['down']
+	rate_params['down'] = int(down)
 
-	monthlypayment = request.form['monthlypayment']
-	rate_params['monthlypayment'] = monthlypayment
+	monthlydebts = request.args.get('monthlydebts', '')
+	# request.form['monthlydebts']
+	rate_params['monthlydebts'] = int(monthlydebts)
 
-	down = request.form['down']
-	rate_params['down'] = down
+	rate = request.args.get('rate', '')
+	# request.form['rate']
+	rate_params['rate'] = int(rate)
 
-	monthlydebts = request.form['monthlydebts']
-	rate_params['monthlydebts'] = monthlydebts
+	schedule = request.args.get('schedule', '')
+	# request.form['schedule']
+	rate_params['schedule'] = str(schedule)
 
-	rate = request.form['rate']
-	rate_params['rate'] = rate
+	term = request.args.get('term', '')
+	# request.form['term']
+	rate_params['term'] = int(term)
 
-	schedule = request.form['schedule']
-	rate_params['schedule'] = schedule
+	debttoincome = request.args.get('debttoincome', '')
+	# request.form['debttoincome']
+	rate_params['debttoincome'] = int(debttoincome)
 
-	term = request.form['term']
-	rate_params['term'] = term
+	incometax = request.args.get('incometax', '')
+	# request.form['incometax']
+	rate_params['incometax'] = int(incometax)
 
-	debttoincome = request.form['debttoincome']
-	rate_params['debttoincome'] = debttoincome
+	propertytax = request.args.get('propertytax', '')
+	# request.form['propertytax']
+	rate_params['propertytax'] = int(propertytax)
 
-	incometax = request.form['incometax']
-	rate_params['incometax'] = incometax
+	hazardinsurance = request.args.get('hazardinsurance', '')
+	# request.form['hazard']
+	rate_params['hazard'] = int(hazardinsurance)
 
-	propertytax = request.form['propertytax']
-	rate_params['propertytax'] = propertytax
+	pmi = request.args.get('pmi', '')
+	# request.form['pmi']
+	rate_params['pmi'] = int(pmi)
 
-	hazard = request.form['hazard']
-	rate_params['hazard'] = hazard
+ 	zipc = request.args.get('zipc', '')
+ 	# request.form['zipcode']
+	rate_params['zipc'] = int(zipc)
 
-	pmi = request.form['pmi']
-	rate_params['pmi'] = pmi
-
- 	hoa = request.form['hoa']
-	rate_params['hoa'] = hoa
-
- 	zipc = request.form['zipcode']
-	rate_params['zipc'] = zipc
-
- 	estimate = request.form['estimate']
-	rate_params['estimate'] = estimate
+ 	estimate = request.args.get('estimate', '')
+ 	print estimate
+	rate_params['estimate'] = BooleanField(estimate)
 
  	zwsid = 'X1-ZWz1eunt26vguj_6msnx'
-	rate_params['zwsid'] = zwsid
+	rate_params['zws-id'] = str(zwsid)
 
  	output = 'json'
 	rate_params['output'] = output
-
+	print output
+	print rate_params
 
 	rate_api_resp = requests.get('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=rate_params)
 	rate_info_api = rate_api_resp.json()
-	# print rate_info.keys()
-	# print rate_info.values()
+	print rate_info_api
+	print rate_info.keys()
+	print rate_info.values()
 	rate_info = rate_info_api['response']
 
 	rate_info_lastWeek = rate_info_api['response']['lastWeek']
 	rate_info_today = rate_info_api['response']['today']
 
 	return render_template('rates.html', rate_info=rate_info)	
+	
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT", 5000))
 
