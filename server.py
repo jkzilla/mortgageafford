@@ -66,9 +66,12 @@ def get_rates():
  	zipc = request.args.get('zipc', '')
 	rate_params['zipc'] = int(zipc)
 
- 	estimate = request.args.get('estimate', '')
- 	print estimate
-	rate_params['estimate'] = BooleanField(estimate)
+ 	true = request.args.get('True', '')
+ 	false = request.args.get('False', '')
+	# if true === 'True':
+		# rate_params['estimate'] = True
+	# if false === 'False':
+		# rate_params['estimate'] = False
 
  	zwsid = 'X1-ZWz1eunt26vguj_6msnx'
 	rate_params['zws-id'] = str(zwsid)
