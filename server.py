@@ -8,9 +8,9 @@ from wtforms import Form, BooleanField, StringField, validators
 
 app = Flask(__name__)
 
-
 app.config['SECRET_KEY'] = "ASECRET"
-app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
+
+# Jinja
 app.jinja_env.undefined = StrictUndefined
 
 @app.route('/')
@@ -70,12 +70,12 @@ def get_rates():
  	print estimate_yes
  	estimate_no = request.args.get('False', '')
 	print estimate_no
-	if estimate_yes is None:
+	if estimate_yes is False:
 		rate_params['estimate'] = False
-	if estimate_no is None:
+	if estimate_no is True:
 		rate_params['estimate'] = True
 
-	print rate_params.values('estimate')
+	print rate_params.values()
  	zwsid = 'X1-ZWz1eunt26vguj_6msnx'
 	rate_params['zws-id'] = str(zwsid)
 
@@ -86,7 +86,7 @@ def get_rates():
 
 	rate_api_resp = requests.get('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=rate_params)
 	rate_info_api = rate_api_resp.json()
-	# print rate_info_api
+	print rate_info_api
 	# print rate_info.keys()
 	# print rate_info.values()
 	rate_info = rate_info_api['response']
