@@ -67,15 +67,15 @@ def get_rates():
 	rate_params['zipc'] = int(zipc)
 
  	estimate_yes = request.args.get('True', '')
- 	print estimate_yes
+ 	# print estimate_yes
  	estimate_no = request.args.get('False', '')
-	print estimate_no
+	# print estimate_no
 	if estimate_yes is False:
 		rate_params['estimate'] = False
 	if estimate_no is True:
 		rate_params['estimate'] = True
 
-	print rate_params.values()
+	# print rate_params.values()
  	zwsid = 'X1-ZWz1eunt26vguj_6msnx'
 	rate_params['zws-id'] = str(zwsid)
 
@@ -87,12 +87,12 @@ def get_rates():
 	rate_api_resp = requests.get('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=rate_params)
 	rate_info_api = rate_api_resp.json()
 	print rate_info_api
+	rate_info = rate_info_api['response']
 	# print rate_info.keys()
 	# print rate_info.values()
-	rate_info = rate_info_api['response']
 
-	rate_info_lastWeek = rate_info_api['response']['lastWeek']
-	rate_info_today = rate_info_api['response']['today']
+	# rate_info_lastWeek = rate_info_api["response"]["lastWeek"]
+	# rate_info_today = rate_info_api['response']["today"]
 
 	return render_template('rates.html', rate_info=rate_info)	
 	
