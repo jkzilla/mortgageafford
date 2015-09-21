@@ -1,7 +1,6 @@
 
 
-$(document).ready(
-	function validateForm() {
+$(document).ready(function validateForm() {
 	console.log('hi')
 	
 	var annualIncome = $("#annualIncome").val();
