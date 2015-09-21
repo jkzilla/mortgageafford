@@ -1,8 +1,9 @@
 
 
-function validateForm() {
-console.log('hi')
-	// var annualincome = document.forms["myForm"]["annualincome"].value;
+$(document).ready(
+	function validateForm() {
+	console.log('hi')
+	
 	var annualIncome = $("#annualIncome").val();
 	var monthlyPayment = $("#monthlyPayment").val();
 	console.log(monthlyPayment);
@@ -12,3 +13,4 @@ console.log('hi')
 	}
 	return false
 }
+)
