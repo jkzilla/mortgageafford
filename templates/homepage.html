@@ -9,16 +9,16 @@
 
 <form name="myForm" action="/get_rates" onsubmit="return validateForm()" method="GET">
 	<label>Current annual Income in dollars (Required if no monthly payment. Enter an integer amount).</label><br>
-	<label>$</label><input type="text" name="annualincome"><br>
+	<label>$</label><input type="text" name="annualIncome" id="annualIncome" pattern="[0-9]{20}"><br>
 
 	<label>Monthly Payment (Required if no annual income. Enter an integer amount).</label><br>
-	<label>$</label><input type="text" name="monthlypayment"><br>
+	<label>$</label><input type="text" name="monthlyPayment" id="monthlyPayment"><br>
 
 	<label>Down Payment in dollars (Enter an integer amount).*</label><br>
 	<label>$</label><input type="text" name="down"><br>
 
 	<label>Debt, paid monthly, in dollars (Enter an integer amount).</label><br>
-	<label>$</label><input type="text" name="monthlydebts"><br>
+	<label>$</label><input type="text" name="monthlyDebts"><br>
 
 	<label>Annual interest rate for the loan (Leave empty to use the current 30 year fixed rate from Zillow Mortgage Marketplace).</label><br>
 	<label>%</label><input type="text" name="rate"><br>
@@ -63,7 +63,7 @@
 
 <div id="results"></div>
 
-<script type="text/javascript" src="{{ url_for('static', filename='form.js') }}"></script>
+<script type="text/javascript" src="/static/js/form.js"></script>
 <script type="text/javascript">
 	
 </script>
