@@ -10,23 +10,23 @@ S
 <form name="myForm" action="/get_rates" onsubmit="return validateForm()" method="GET">
 	<label>Current annual Income in dollars (Required if no monthly payment. Enter an integer amount).</label><br>
 	<label>$</label>
-		<input type="text" name="annualIncome" id="annualIncome" pattern="[0-9]{10}"><br>
+		<input type="number" name="annualIncome" id="annualIncome"><br>
 
 	<label>Monthly Payment (Required if no annual income. Enter an integer amount).</label><br>
 	<label>$</label>
-		<input type="text" name="monthlyPayment" id="monthlyPayment"><br>
+		<input type="number" name="monthlyPayment" id="monthlyPayment"><br>
 
 	<label>Down Payment in dollars (Enter an integer amount).*</label><br>
 	<label>$</label>
-		<input type="text" name="down"><br>
+		<input type="number" name="down"><br>
 
 	<label>Debt, paid monthly, in dollars (Enter an integer amount).</label><br>
 	<label>$</label>
-		<input type="text" name="monthlyDebts"><br>
+		<input type="number" name="monthlyDebts"><br>
 
 	<label>Annual interest rate for the loan (Leave empty to use the current 30 year fixed rate from Zillow Mortgage Marketplace).</label><br>
 	<label>%</label>
-		<input type="text" name="rate"><br>
+		<input type="number" name="rate"><br>
 
 	<label>Enter the type of amortization schedule to return in the result set. If omitted, no table will be returned</label>
 	<select name="schedule">
@@ -37,14 +37,14 @@ S
 	</select><br>
 
 	<label>The term of the loan in months. If you leave this blank, we assume a 360 month term.</label><br>
-		<input type="text" name="term"><br>
+		<input type="number" name="term"><br>
 
 	<label>Enter your max allowed debt to income ratio. If you leave this blank, we assume a 36% default.</label><br>
-		<input type="text" name="debtToIncome"><br>
+		<input type="number" name="debtToIncome"><br>
 	<label>%</label><br>
 
 	<label>Enter your income tax rate of the borrow as a percentage. If you leave this blank, we assume a 30% default.</label><br>
-		<input type="text" name="incomeTax"><br>
+		<input type="number" name="incomeTax"><br>
 	<label>%</label><br>
 
 	<label>Would you like the property tax, hazard insurance, and pmi estimated and returned?</label><br>
@@ -52,18 +52,18 @@ S
 		<input type="radio" name="estimateNo" value="False">No<br>
 
 	<label>Your annual property tax as a percentage of the home value. </label><br>
-		<input type="text" name="propertyTax"><br>
+		<input type="number" name="propertyTax"><br>
 
 	<label>Your annual hazard insurance in dollars (enter integer amounts only, such as 5000).</label><br>
-		<input type="text" name="hazardInsurance"><br>
+		<input type="number" name="hazardInsurance"><br>
 
 	<label>Your monthly Private Mortgage in dollars (enter integer amounts only, such as 5000).</label><br>
-		<input type="text" name="mi"><br>
+		<input type="number" name="mi"><br>
 
 	<label>The  zipcode in which the property is located.</label><br>
-		<input type="text" name="zipC"><br>
+		<input type="number" name="zipC"><br>
 
-		<input type="submit" value="Submit">
+		<input type="submit" id="Submit" value="Submit">
 </form>
 
 <div id="results"></div>

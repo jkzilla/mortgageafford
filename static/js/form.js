@@ -1,10 +1,14 @@
 
 
-$(document).ready(function validateForm() {
+$(document).ready(
+	var form = $('#myForm');
+	form.validate();
+	$('#Submit').click(function() {
 	console.log('hi')
-	
 	var $annualIncome = $("#annualIncome").val();
 	var $monthlyPayment = $("#monthlyPayment").val();
+	var $down = $("#down").val();
+
 	console.log(monthlyPayment);
 	console.log(annualIncome);
 	if $annualIncome.length != 0 {
@@ -15,11 +19,13 @@ $(document).ready(function validateForm() {
 		return true;
 	}
 	else if $annualIncome.length && $monthlyPayment.length === 0 {
-		alert("Please enter either an annual income or a monthly payment.")
+		alert("Please enter either an annual income or a monthly payment.");
+		return false;
+	}
+	else if $down.length === 0 {
+		alert(Please enter the amount of your down payment);
 		return false;
 	}
 	// do not submit form
-	alert("Please fill out values correctly");
-	return false;
-}
-)
+	return true;
+});
