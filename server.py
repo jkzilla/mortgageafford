@@ -23,7 +23,26 @@ def get_rates():
  	rate_params = {}
 
  	# print rate_params
-
+ 	sample_rate_params = {
+    "output": "json",
+    "monthlydebts": "1500",
+    "terminmonths": "360",
+    "monthlypayment": "2000",
+    "schedule": "yearly",
+    "pmi": "1000",
+    "debttoincome": "36.0",
+    "hazard": "20000",
+    "hoa": "10000",
+    "callback": "cb",
+    "propertytax": "20.0",
+    "estimate": "false",
+    "annualincome": "1000000",
+    "incometax": "30.0",
+    "zip": "91302",
+    "down": "800000",
+    "rate": "6.504"
+}
+	print sample_rate_params
 	annualincome = request.args.get('annualincome', '')
 	print annualincome
 	rate_params['annualincome'] = int(annualincome)
@@ -62,7 +81,7 @@ def get_rates():
 	rate_params['pmi'] = int(pmi)
 
  	zipc = request.args.get('zipc', '')
-	rate_params['zipc'] = int(zipc)
+	rate_params['zip'] = int(zipc)
 
  	estimate_yes = request.args.get('True', '')
  	# print estimate_yes
@@ -82,7 +101,7 @@ def get_rates():
 	# print output
 	# print rate_params
 
-	rate_api_resp = requests.get('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=rate_params)
+	rate_api_resp = requests.get('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=sample_rate_params)
 	rate_info_api = rate_api_resp.json()
 	print rate_info_api
 	rate_info = rate_info_api['response']
