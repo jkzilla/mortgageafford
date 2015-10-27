@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, flash, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 import requests
 import json
+from json import dump
 import os 
 from wtforms import Form, BooleanField, StringField, validators
 
@@ -20,29 +21,10 @@ def homepage():
 @app.route('/get_rates', methods=['GET'])
 def get_rates():
  	
- 	rate_params = {}
+ 	rate_params = { "output": "json", "monthlydebts": "1500", "terminmonths": "360", "monthlypayment": "2000", "schedule": "yearly", "pmi": "1000", "debttoincome": "36.0", "hazard": "20000", "hoa": "10000", "callback": "cb", "propertytax": "20.0", "estimate": "false", "annualincome": "1000000", "incometax": "30.0", "zip": "91302", "down": "800000", "rate": "6.504", "zw-sid": "X1-ZWz1eunt26vguj_6msnx"
+ }
 
  	# print rate_params
- 	sample_rate_params = {
-    "output": "json",
-    "monthlydebts": "1500",
-    "terminmonths": "360",
-    "monthlypayment": "2000",
-    "schedule": "yearly",
-    "pmi": "1000",
-    "debttoincome": "36.0",
-    "hazard": "20000",
-    "hoa": "10000",
-    "callback": "cb",
-    "propertytax": "20.0",
-    "estimate": "false",
-    "annualincome": "1000000",
-    "incometax": "30.0",
-    "zip": "91302",
-    "down": "800000",
-    "rate": "6.504"
-}
-	print sample_rate_params
 	
 	# annualincome = request.args.get('annualincome', '')
 	# print annualincome
@@ -84,34 +66,30 @@ def get_rates():
  # 	zipc = request.args.get('zipc', '')
 	# rate_params['zip'] = int(zipc)
 
- 	estimate_yes = request.args.get('True', '')
- 	# print estimate_yes
- 	estimate_no = request.args.get('False', '')
-	# print estimate_no
-	if estimate_yes is False:
-		rate_params['estimate'] = False
-	if estimate_no is True:
-		rate_params['estimate'] = True
+ # 	estimate_yes = request.args.get('True', '')
+ # 	# print estimate_yes
+ # 	estimate_no = request.args.get('False', '')
+	# # print estimate_no
+	# if estimate_yes is False:
+	# 	rate_params['estimate'] = False
+	# if estimate_no is True:
+	# 	rate_params['estimate'] = True
 
 	# print rate_params.values()
  	zwsid = 'X1-ZWz1eunt26vguj_6msnx'
-	rate_params['zws-id'] = str(zwsid)
+	# rate_params['zws-id'] = str(zwsid)
 
- 	output = 'json'
-	rate_params['output'] = output
+ # 	output = 'json'
+	# rate_params['output'] = output
 	# print output
 
-	rate_api_resp = requests.post('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=sample_rate_params)
-	rate_info_api = rate_api_resp.json()
-	print rate_info_api
-	rate_info = rate_info_api['response']
-	# print rate_info.keys()
-	# print rate_info.values()
-
-	# rate_info_lastWeek = rate_info_api["response"]["lastWeek"]
-	# rate_info_today = rate_info_api['response']["today"]
-
-	return render_template('rates.html', rate_info=rate_info)	
+	rate_api_resp = requests.post('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=rate_params)
+	print rate_api_resp.url
+	rate_api_resp_dict = rate_api_resp.text.rstrip()[3:].lstrip()[:-2]
+	print type(rate_api_resp_dict)
+	rate_api_resp_json = json.dumps(rate_api_resp_dict)
+	print rate_api_resp_json
+	return render_template('rates.html', rate_info=rate_api_resp_dict)	
 	
 if __name__ == '__main__':
 	port = int(os.environ.get("PORT", 5000))
