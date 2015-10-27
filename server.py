@@ -43,45 +43,46 @@ def get_rates():
     "rate": "6.504"
 }
 	print sample_rate_params
-	annualincome = request.args.get('annualincome', '')
-	print annualincome
-	rate_params['annualincome'] = int(annualincome)
+	
+	# annualincome = request.args.get('annualincome', '')
+	# print annualincome
+	# rate_params['annualincome'] = int(annualincome)
 
-	monthlypayment = request.args.get('monthlypayment', '')
-	rate_params['monthlypayment'] = int(monthlypayment)
+	# monthlypayment = request.args.get('monthlypayment', '')
+	# rate_params['monthlypayment'] = int(monthlypayment)
 
-	down = request.args.get('down', '')
-	rate_params['down'] = int(down)
+	# down = request.args.get('down', '')
+	# rate_params['down'] = int(down)
 
-	monthlydebts = request.args.get('monthlydebts', '')
-	rate_params['monthlydebts'] = int(monthlydebts)
+	# monthlydebts = request.args.get('monthlydebts', '')
+	# rate_params['monthlydebts'] = int(monthlydebts)
 
-	rate = request.args.get('rate', '')
-	rate_params['rate'] = int(rate)
+	# rate = request.args.get('rate', '')
+	# rate_params['rate'] = int(rate)
 
-	schedule = request.args.get('schedule', '')
-	rate_params['schedule'] = str(schedule)
+	# schedule = request.args.get('schedule', '')
+	# rate_params['schedule'] = str(schedule)
 
-	term = request.args.get('term', '')
-	rate_params['term'] = int(term)
+	# term = request.args.get('term', '')
+	# rate_params['term'] = int(term)
 
-	debttoincome = request.args.get('debttoincome', '')
-	rate_params['debttoincome'] = int(debttoincome)
+	# debttoincome = request.args.get('debttoincome', '')
+	# rate_params['debttoincome'] = int(debttoincome)
 
-	incometax = request.args.get('incometax', '')
-	rate_params['incometax'] = int(incometax)
+	# incometax = request.args.get('incometax', '')
+	# rate_params['incometax'] = int(incometax)
 
-	propertytax = request.args.get('propertytax', '')
-	rate_params['propertytax'] = int(propertytax)
+	# propertytax = request.args.get('propertytax', '')
+	# rate_params['propertytax'] = int(propertytax)
 
-	hazardinsurance = request.args.get('hazardinsurance', '')
-	rate_params['hazard'] = int(hazardinsurance)
+	# hazardinsurance = request.args.get('hazardinsurance', '')
+	# rate_params['hazard'] = int(hazardinsurance)
 
-	pmi = request.args.get('pmi', '')
-	rate_params['pmi'] = int(pmi)
+	# pmi = request.args.get('pmi', '')
+	# rate_params['pmi'] = int(pmi)
 
- 	zipc = request.args.get('zipc', '')
-	rate_params['zip'] = int(zipc)
+ # 	zipc = request.args.get('zipc', '')
+	# rate_params['zip'] = int(zipc)
 
  	estimate_yes = request.args.get('True', '')
  	# print estimate_yes
@@ -99,9 +100,8 @@ def get_rates():
  	output = 'json'
 	rate_params['output'] = output
 	# print output
-	# print rate_params
 
-	rate_api_resp = requests.get('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=sample_rate_params)
+	rate_api_resp = requests.post('http://www.zillow.com/webservice/mortgage/CalculateAffordability.htm?', params=sample_rate_params)
 	rate_info_api = rate_api_resp.json()
 	print rate_info_api
 	rate_info = rate_info_api['response']
