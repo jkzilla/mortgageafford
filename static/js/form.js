@@ -1,12 +1,10 @@
-var main = function() {
-
 	var form = $('#myForm');
 	
 	form.validate();
 	
 	$('#Submit').click(function() {
 	
-	console.log('hi')
+	console.log('hi');
 	
 	var $annualIncome = $('#annualIncome').val();
 	var $monthlyPayment = $('#monthlyPayment').val();
@@ -15,7 +13,7 @@ var main = function() {
 	if ($annualIncome != null) {
 		return true;
 	}
-	else if ($annualIncome.length === 0 && $monthlyPayment.length != 0) {
+	else if ($annualIncome === null && $monthlyPayment != null) {
 		// submit form
 		return true;
 	}
@@ -29,7 +27,4 @@ var main = function() {
 	}
 	// do not submit form
 	return true;
-}
-);
-
-$(document).ready(main);
+});
