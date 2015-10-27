@@ -11,11 +11,12 @@
 	var $down = $('#down').val();
 
 	if ($annualIncome != null) {
-		return true;
+	// if an annualIncome is provided, continue to the next condition
+		continue;
 	}
-	else if ($annualIncome === null && $monthlyPayment != null) {
-		// submit form
-		return true;
+	else if ($annualIncome === null && $monthlyPayment === null) {
+	// do not submit
+		return false;
 	}
 	else if ($annualIncome.length && $monthlyPayment.length === 0) {
 		alert("Please enter either an annual income or a monthly payment.");

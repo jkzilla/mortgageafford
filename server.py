@@ -25,10 +25,8 @@ def get_rates():
  	# print rate_params
 
 	annualincome = request.args.get('annualincome', '')
-	# print annualincome
-
+	print annualincome
 	rate_params['annualincome'] = int(annualincome)
-	# print rate_params
 
 	monthlypayment = request.args.get('monthlypayment', '')
 	rate_params['monthlypayment'] = int(monthlypayment)
